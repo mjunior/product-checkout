@@ -1,0 +1,19 @@
+button.btn{
+  background: #fff;
+  padding: 15px 0;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid $button-border-color;
+  box-shadow: 0 2px 0px $button-border-color;
+  color: $accent-color;
+  font-weight: 600;
+  &.btn_block{
+    width: 100%;
+  }
+  &.btn_accent{
+    background: $accent-color;
+    color: #fff;
+    border: 1px solid $button-border-accent-color;
+    box-shadow: 0 2px 0px $button-border-accent-color;
+  }
+}

@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,800");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,800");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -45,10 +45,13 @@ table {
 }
 
 .container {
-  max-width: 335px;
+  max-width: 375px;
   margin: 0 auto;
   background: #fff;
   min-height: 900px;
+}
+
+.padding-container {
   padding: 0 20px;
 }
 
@@ -68,6 +71,10 @@ table {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+}
+.row.no-wrap {
+  -ms-flex-wrap: nowrap !important;
+      flex-wrap: nowrap !important;
 }
 .row.x-center {
   -webkit-box-pack: center;
@@ -114,6 +121,18 @@ section h1 {
 section .item-detail {
   margin-top: 27px;
   font-size: 14px;
+}
+
+.action-buttons {
+  padding: 0 10px;
+  border-top: 1px solid #f4f2f0;
+}
+.action-buttons .btn {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.action-buttons .btn:last-child {
+  margin-right: 0px;
 }
 
 .accent-text {
@@ -178,6 +197,28 @@ section .item-detail {
   height: 10px;
   border-radius: 50%;
   background: #f77273;
+}
+
+button.btn {
+  background: #fff;
+  padding: 15px 0;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #f4f2f0;
+  -webkit-box-shadow: 0 2px 0px #f4f2f0;
+          box-shadow: 0 2px 0px #f4f2f0;
+  color: #f77273;
+  font-weight: 600;
+}
+button.btn.btn_block {
+  width: 100%;
+}
+button.btn.btn_accent {
+  background: #f77273;
+  color: #fff;
+  border: 1px solid #d26769;
+  -webkit-box-shadow: 0 2px 0px #d26769;
+          box-shadow: 0 2px 0px #d26769;
 }
 
 body {

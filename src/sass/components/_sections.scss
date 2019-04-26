@@ -9,8 +9,20 @@ section{
     margin-top: 27px;
     font-size: 14px;
   }
+
 }
 
+.action-buttons {
+  padding: 0 10px;
+  border-top: 1px solid $divider-border-color;
+  .btn{
+    margin-top: 10px;
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+}
 .accent-text{
   color: $accent-color;
 }
