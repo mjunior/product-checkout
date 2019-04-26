@@ -1,0 +1,57 @@
+/* Customize the label (the radio-button) */
+
+.radio-button {
+  display: flex;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+}
+.checkmark {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 1px solid #e4e1df;
+  border-radius: 50%;
+}
+
+.radio-button {
+  input:checked~.checkmark {
+    background-color: #fff;
+    border: 1px solid #e4e1df;
+  }
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.radio-button {
+  input:checked~.checkmark:after {
+    display: block;
+  }
+
+  .checkmark:after {
+    top: 5px;
+    left: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: $accent-color;
+  }
+}

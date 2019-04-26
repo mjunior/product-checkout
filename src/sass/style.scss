@@ -1,6 +1,3 @@
-body{
-  background: #0e0e0e;
-}
 //global
 @import 'reset';
 @import 'variables';
@@ -9,3 +6,11 @@ body{
 //componentes
 @import 'components/nav';
 @import 'components/picture';
+@import 'components/sections';
+@import 'components/radio_button';
+
+body {
+  background: #0e0e0e;
+  color: $text-normal-color;
+  font-family: $font-family;
+}
