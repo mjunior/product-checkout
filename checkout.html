@@ -13,13 +13,13 @@
         <img class="logo" src="/public/images/logo.png" alt="">
       </nav>
     </header>
-    <section class="picture row x-center y-center">
+    <div class="picture row x-center y-center">
       <img src="http://lorempixel.com/400/500/sports/" alt="">
-    </section>
+    </div>
 
     <section>
       <h1>cupons</h1>
-      <div class="item-detail ">
+      <div class="item-detail">
         <label class="radio-button">não usar cupom
           <input type="radio" checked="checked" name="radio">
           <span class="checkmark"></span>
@@ -37,21 +37,30 @@
 
     <section>
       <h1>resumo</h1>
-  
       <div class="item-detail row x-between">
-        <span>Nome do item</span>
-        <span>R$ 12,00</span>
+        <span>valor original</span>
+        <span>R$ 100,00</span>
       </div>
 
       <div class="item-detail row x-between">
-        <span>Nome do item</span>
-        <span>R$ 12,00</span>
+        <span>cupom</span>
+        <span class="accent-text">- R$ 12,00</span>
       </div>
 
       <div class="item-detail row x-between">
-        <span>Nome do item</span>
-        <span>R$ 12,00</span>
+        <span>frete</span>
+        <span>R$ 20,00</span>
       </div>
+
+      <div class="item-detail row x-between">
+        <span>total</span>
+        <span class="bold-text">R$ 108,00</span>
+      </div>
+    </section>
+
+    <section>
+      <button>cancelar</button>
+      <button>confirmar</button>
     </section>
   </div>
   <script src="/public/js/jquery.min.js"></script>

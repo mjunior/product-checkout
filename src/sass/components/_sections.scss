@@ -1,4 +1,5 @@
 section{
+  margin-top: 37px;
   h1{
     font-weight: 800;
     color: $text-bold-color;
@@ -6,9 +7,13 @@ section{
 
   .item-detail {
     margin-top: 27px;
+    font-size: 14px;
   }
 }
 
 .accent-text{
   color: $accent-color;
+}
+.bold-text{
+  font-weight: bold;
 }
