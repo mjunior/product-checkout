@@ -2,10 +2,14 @@
   "name": "enjoei-front-end-test",
   "main": "server.js",
   "dependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
     "body-parser": "^1.18.2",
     "cors": "^2.8.5",
     "express": "^4.16.3",
-    "jquery": "^3.4.0"
+    "grunt-babel": "^8.0.0",
+    "jquery": "^3.4.0",
+    "sweetalert2": "^8.8.7"
   },
   "devDependencies": {
     "autoprefixer": "latest",

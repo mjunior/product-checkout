@@ -4,11 +4,38 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
     copy: {
       main: {
-        expand: true,
-        cwd: 'node_modules/jquery/dist',
-        src: 'jquery.min.js',
-        dest: 'public/js',
+        files:[
+          {
+            expand: true,
+            cwd: 'node_modules/jquery/dist',
+            src: 'jquery.min.js',
+            dest: 'public/js'
+          },
+          {
+            expand: true,
+            cwd: 'node_modules/sweetalert2/dist',
+            src: 'sweetalert2.all.min.js',
+            dest: 'public/js'
+          },
+          {
+            expand: true,
+            cwd: 'node_modules/sweetalert2/dist',
+            src: 'sweetalert2.min.css',
+            dest: 'public/css'
+          }
+        ]
       },
+    },
+    babel: {
+      options: {
+        sourceMap: true,
+        presets: ['@babel/preset-env']
+      },
+      dist: {
+        files: {
+          'public/js/script.js':'src/js/script.js'
+        }
+      }
     },
     sass: {
       // Begin Sass Plugin
@@ -55,7 +82,7 @@ module.exports = function (grunt) {
     uglify: {
       // Begin JS Uglify Plugin
       build: {
-        src: ['src/**/*.js'],
+        src: ['public/js/script.js'],
         dest: 'public/js/script.min.js',
       },
     },
@@ -68,7 +95,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: 'src/**/*.js',
-        tasks: ['uglify'],
+        tasks: ['babel','uglify'],
       },
     },
   })
@@ -79,6 +106,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify')
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-babel');
   
   // Register Grunt tasks
   grunt.registerTask('default', ['copy', 'watch'])
