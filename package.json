@@ -1,0 +1,9 @@
+{
+  "name": "enjoei-front-end-test",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.5",
+    "express": "^4.16.3"
+  }
+}
