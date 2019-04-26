@@ -90,3 +90,12 @@ table {
   max-width: 30px;
   height: auto;
 }
+
+.picture {
+  padding-top: 30px;
+}
+.picture img {
+  width: 120px;
+  height: 126px;
+  border-radius: 4px;
+}
