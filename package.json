@@ -4,6 +4,17 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "cors": "^2.8.5",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "jquery": "^3.4.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "latest",
+    "grunt": "latest",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-sass": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-postcss": "latest"
   }
 }

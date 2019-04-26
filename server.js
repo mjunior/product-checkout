@@ -7,7 +7,7 @@ const cors = require('cors')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cors())
-app.use('/static', express.static(__dirname + '/resources'));
+app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
   res.redirect('/produto/1321/checkout/6544')
