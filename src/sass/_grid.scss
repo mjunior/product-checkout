@@ -1,0 +1,20 @@
+.container{
+  max-width: 375px;
+  margin: 0 auto;
+  background: #fff;
+  min-height: 900px;
+}
+
+.row{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:flex-start;
+  &.x-center {
+    justify-content: center;
+  }
+  &.y-center {
+    align-items: center;
+  }
+}

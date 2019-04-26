@@ -1,0 +1,10 @@
+@import '../variables';
+.nav {
+  min-height: 60px;
+  border-bottom: 1px solid $divider-border-color;
+}
+
+.logo{
+  max-width: 30px;
+  height: auto;
+}

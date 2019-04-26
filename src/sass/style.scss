@@ -1,8 +1,10 @@
-@import 'variables';
 body{
-  background: $bg;
+  background: #0e0e0e;
 }
+//global
+@import 'reset';
+@import 'variables';
+@import 'grid';
 
-.a{
-  color:#122;  
-}
+//componentes
+@import 'components/nav';
