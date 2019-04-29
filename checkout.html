@@ -16,25 +16,14 @@
     </header>
     
     <div class="picture row x-center y-center">
-      <img src="http://lorempixel.com/400/500/sports/" alt="">
+      <img src="http://lorempixel.com/400/500/food/" alt="">
     </div>
 
     <div class="padding-container">
       <section>
-        <h1>cupons</h1>
-        <div class="item-detail">
-          <label class="radio-button">não usar cupom
-            <input type="radio" checked="checked" name="radio">
-            <span class="checkmark"></span>
-          </label>
-        </div>
-
-        <div class="item-detail ">
-          <label class="radio-button row x-between">black friday
-            <input type="radio" checked="checked" name="radio">
-            <span class="checkmark"></span>
-            <span class="accent-text">R$ 12,00</span>
-          </label>
+        <div id="coupon-section">
+          <h1>cupons</h1>
+          <div id="coupons-list"></div>
         </div>
       </section>
 
@@ -42,22 +31,24 @@
         <h1>resumo</h1>
         <div class="item-detail row x-between">
           <span>valor original</span>
-          <span id="amount-original">R$ 100,00</span>
+          <span id="amount-original"></span>
         </div>
 
-        <div class="item-detail row x-between">
-          <span>cupom</span>
-          <span id="amount-discont"class="accent-text">- R$ 12,00</span>
+        <div id="amount-cupom-detail">
+          <div class="item-detail row x-between">
+            <span>cupom</span>
+            <span id="amount-discount"></span>
+          </div>
         </div>
 
         <div class="item-detail row x-between">
           <span>frete</span>
-          <span id="amount-shipping" data-shippingPrice></span>
+          <span id="amount-shipping"></span>
         </div>
 
         <div class="item-detail row x-between">
           <span>total</span>
-          <span id="amount-total" data-totalPrice class="bold-text"></span>
+          <span id="amount-total"></span>
         </div>
       </section>
     </div>

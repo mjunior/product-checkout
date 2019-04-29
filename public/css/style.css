@@ -209,6 +209,7 @@ button.btn {
           box-shadow: inset 0 -2px 1px #f4f2f0;
   color: #f77273;
   font-weight: 600;
+  font-family: "Montserrat", sans-serif;
 }
 button.btn:hover {
   cursor: pointer;
@@ -235,4 +236,8 @@ body {
   background: #0e0e0e;
   color: #7d7a77;
   font-family: "Montserrat", sans-serif;
+}
+
+.hide {
+  display: none;
 }
