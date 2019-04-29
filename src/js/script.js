@@ -10,9 +10,10 @@
   }
   //ModalScript
   class EnjoeiModal {
-    constructor(title, text){
+    constructor(title, text,icon){
       this.title = title;
       this.text = text;
+      this.modal_icon = icon
     }
     
     fire(){
@@ -24,11 +25,9 @@
         showCloseButton: false,
         showCancelButton: false,
         showConfirmButton: false,
-        imageUrl: 'https://unsplash.it/40/40',
-        imageWidth: 40,
-        imageHeight: 40,
-        imageAlt: 'Custom image',
-        width: '280px',
+        imageUrl: `/public/images/cart-${this.modal_icon}.png`,
+        imageHeight: 25,
+        width: '295px',
         customClass: {
           container: 'enjoei-modal-container-class',
           popup: 'enjoei-modal-popup-class',
@@ -57,14 +56,14 @@
     confirm() {
       const title = 'compra confirmada';
       const text = 'enviaremos atualizações sobre o pedido para o seu email';
-      const modal = new EnjoeiModal(title, text)
+      const modal = new EnjoeiModal(title, text, 'success')
       modal.fire()
     }
 
     cancel() {
       const title = 'compra cancelada';
-      const text = 'pedido não foi enviado e você não sera cobrado'
-      const modal = new EnjoeiModal(title,text)
+      const text = 'o pedido não foi enviado e você não será cobrado'
+      const modal = new EnjoeiModal(title,text,'cancel')
       modal.fire()
     }
 

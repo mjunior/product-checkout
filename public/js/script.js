@@ -45,11 +45,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   var EnjoeiModal =
   /*#__PURE__*/
   function () {
-    function EnjoeiModal(title, text) {
+    function EnjoeiModal(title, text, icon) {
       _classCallCheck(this, EnjoeiModal);
 
       this.title = title;
       this.text = text;
+      this.modal_icon = icon;
     }
 
     _createClass(EnjoeiModal, [{
@@ -63,11 +64,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           showCloseButton: false,
           showCancelButton: false,
           showConfirmButton: false,
-          imageUrl: 'https://unsplash.it/40/40',
-          imageWidth: 40,
-          imageHeight: 40,
-          imageAlt: 'Custom image',
-          width: '280px',
+          imageUrl: "/public/images/cart-".concat(this.modal_icon, ".png"),
+          imageHeight: 25,
+          width: '295px',
           customClass: {
             container: 'enjoei-modal-container-class',
             popup: 'enjoei-modal-popup-class',
@@ -107,15 +106,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       value: function confirm() {
         var title = 'compra confirmada';
         var text = 'enviaremos atualizações sobre o pedido para o seu email';
-        var modal = new EnjoeiModal(title, text);
+        var modal = new EnjoeiModal(title, text, 'success');
         modal.fire();
       }
     }, {
       key: "cancel",
       value: function cancel() {
         var title = 'compra cancelada';
-        var text = 'pedido não foi enviado e você não sera cobrado';
-        var modal = new EnjoeiModal(title, text);
+        var text = 'o pedido não foi enviado e você não será cobrado';
+        var modal = new EnjoeiModal(title, text, 'cancel');
         modal.fire();
       }
     }, {
