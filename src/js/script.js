@@ -10,19 +10,24 @@
   }
   //ModalScript
   class EnjoeiModal {
-    constructor(title, text){
+    constructor(title, text,icon){
       this.title = title;
       this.text = text;
+      this.modal_icon = icon
     }
     
     fire(){
+      let width = `${document.querySelector('.container').offsetWidth}px`
+      console.log('wi',width);
       Swal.fire({
         title: this.title || 'compra efetuada',
         text: this.text || 'enviaremos informacoes por email',
         showCloseButton: false,
         showCancelButton: false,
         showConfirmButton: false,
-        width: '370px',
+        imageUrl: `/public/images/cart-${this.modal_icon}.png`,
+        imageHeight: 25,
+        width: '295px',
         customClass: {
           container: 'enjoei-modal-container-class',
           popup: 'enjoei-modal-popup-class',
@@ -50,15 +55,15 @@
 
     confirm() {
       const title = 'compra confirmada';
-      const text = 'entraremos em contato po email';
-      const modal = new EnjoeiModal(title, text)
+      const text = 'enviaremos atualizações sobre o pedido para o seu email';
+      const modal = new EnjoeiModal(title, text, 'success')
       modal.fire()
     }
 
     cancel() {
       const title = 'compra cancelada';
-      const text = 'pedido não foi enviado, você não sera cobrado'
-      const modal = new EnjoeiModal(title,text)
+      const text = 'o pedido não foi enviado e você não será cobrado'
+      const modal = new EnjoeiModal(title,text,'cancel')
       modal.fire()
     }
 

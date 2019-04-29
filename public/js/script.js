@@ -45,23 +45,28 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   var EnjoeiModal =
   /*#__PURE__*/
   function () {
-    function EnjoeiModal(title, text) {
+    function EnjoeiModal(title, text, icon) {
       _classCallCheck(this, EnjoeiModal);
 
       this.title = title;
       this.text = text;
+      this.modal_icon = icon;
     }
 
     _createClass(EnjoeiModal, [{
       key: "fire",
       value: function fire() {
+        var width = "".concat(document.querySelector('.container').offsetWidth, "px");
+        console.log('wi', width);
         Swal.fire({
           title: this.title || 'compra efetuada',
           text: this.text || 'enviaremos informacoes por email',
           showCloseButton: false,
           showCancelButton: false,
           showConfirmButton: false,
-          width: '370px',
+          imageUrl: "/public/images/cart-".concat(this.modal_icon, ".png"),
+          imageHeight: 25,
+          width: '295px',
           customClass: {
             container: 'enjoei-modal-container-class',
             popup: 'enjoei-modal-popup-class',
@@ -100,16 +105,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       key: "confirm",
       value: function confirm() {
         var title = 'compra confirmada';
-        var text = 'entraremos em contato po email';
-        var modal = new EnjoeiModal(title, text);
+        var text = 'enviaremos atualizações sobre o pedido para o seu email';
+        var modal = new EnjoeiModal(title, text, 'success');
         modal.fire();
       }
     }, {
       key: "cancel",
       value: function cancel() {
         var title = 'compra cancelada';
-        var text = 'pedido não foi enviado, você não sera cobrado';
-        var modal = new EnjoeiModal(title, text);
+        var text = 'o pedido não foi enviado e você não será cobrado';
+        var modal = new EnjoeiModal(title, text, 'cancel');
         modal.fire();
       }
     }, {
