@@ -1,3 +1,12 @@
+class Util{
+  static formatMoney(amount, decimalCount = 2, decimal = ",", thousands = ".") {
+    if(isNaN(amount)){  
+      return ""
+    }
+    const format = { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' }
+    return amount.toLocaleString('pt-BR', format);
+  }
+}
 //ModalScript
 class EnjoeiModal {
   constructor(title, text){
@@ -57,7 +66,6 @@ class ActionButtons{
     this.cancelButton.onclick = this.cancel
   }
 }
-
 //PathParamRouter
 class PathParam {
   static params() {
@@ -69,65 +77,138 @@ class PathParam {
     return result;
   }
 }
-
-class PrintHtmlPage{
-  constructor(id, value, opts = {}){
-    this.value = value;
-    this.opts = opts
-    this.element = document.querySelector(`#${id}`)
+//Summary
+class SummarySection{
+  constructor(fields){
+    this.fields = fields
   }
 
-  show(){
-    this.element.innerText = this._formatMoney(this.value)
-    if(this.opts.accent)
-      this.element.classList.add("accent-text");
-      
-    if (this.opts.bold) 
-      this.element.classList.add("bold-text");
+  printAll(){
+    this._print('amount-total', this.fields.totalPrice, { bold: true });
+    this._print('amount-shipping', this.fields.shippingPrice);
+    this._print('amount-original', this.fields.price);
     
+    //if there are more one available voucher, find the correct
+    if(this.fields.hasVoucher === true){
+      const cupom = this.fields.cupons.find(cupom => {
+        return cupom.id == this.fields.voucher_id
+      })
+      this._print('amount-discount', cupom.discount * -1,{accent: true});
+    }else{
+      this._print('amount-discount', 0);
+    }
   }
+  
+  _print(id, value, opts = {}){
+    const element = document.querySelector(`#${id}`)
+    element.innerText = Util.formatMoney(value)
+    element.className = '';
 
- _formatMoney(amount, decimalCount = 2, decimal = ",", thousands = ".") {
-  try {
-    decimalCount = Math.abs(decimalCount);
-    decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
-
-    const negativeSign = amount < 0 ? "-" : "";
-
-    let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
-    let j = (i.length > 3) ? i.length % 3 : 0;
-
-    return `R$ ${negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "")}`;
-  } catch (e) {
-    console.log(e)
+    if(opts.accent)
+      element.classList.add("accent-text");
+      
+    if (opts.bold) 
+      element.classList.add("bold-text");
   }
 }
+
+//Cupons
+class CupomSection{
+  constructor(cupons){
+    this.cupons = cupons;
+    this.couponSectionList = document.getElementById('coupons-list');
+    this.cupomAmountDetail = document.getElementById('amount-cupom-detail');
+    if(!cupons || cupons.length === 0){
+      document.getElementById('coupon-section').classList.add("hide")
+      this.couponSectionList.classList.add("hide");
+      this.cupomAmountDetail.classList.add("hide");
+      return
+    }
+
+    this.cupons.unshift({
+      id: -1,
+      title: 'não usar cupom'
+    })
+  }
+  
+  printAvailables(){
+    const voucherOnScreen = document.querySelectorAll(".voucher-item").length
+    //return if all vouchers are on the screen
+    if(voucherOnScreen === this.cupons.length){
+      return
+    }
+    this.couponSectionList.innerHTML = ""
+    this.cupons.forEach(cupom => {
+      let html = this._print(cupom)
+      this.couponSectionList.appendChild(html)
+    });
+  }
+
+  bindChanges(){
+    document.querySelectorAll("input[name='voucher']").forEach(function (el) {
+      el.onchange = function(){
+        const voucher_id = document.querySelector("input[name='voucher']:checked").value
+        new LoadCheckoutPage(PathParam.params().checkout, voucher_id);
+      }
+    })
+  }
+  
+  _print(cupom){
+    const div = document.createElement('div');
+    const htmlString = `<div class="item-detail voucher-item">
+      <label class="radio-button row x-between">${cupom.title}
+      <input type="radio" name="voucher" value="${cupom.id}">
+      <span class="checkmark"></span>
+      <span class="accent-text">${Util.formatMoney(cupom.discount * -1)}</span>
+      </label>
+    </div>`
+    div.innerHTML = htmlString.trim();
+    return div.firstChild
+  }
 }
 
-//Load product checkout 
+//Load checkout page
 class LoadCheckoutPage{
-  constructor(checkout_id){
+  constructor(checkout_id, voucher_id = -1){
     this.checkout_id = checkout_id;
+    this.voucher_id = voucher_id;
+    this.hasVoucher = false;
     this.perform();
   }
 
   perform(){
-    fetch(`/api/checkouts/${this.checkout_id}`)
+    let url = `/api/checkouts/${this.checkout_id}`
+    if(this.voucher_id != -1){
+      url = url.concat(`?couponId=${this.voucher_id}`);
+    }
+    fetch(url)
       .then((result) => result.json())
       .then((result) => {
-        const fields = {
+        let fields = {
           shippingPrice: result.checkout.shippingPrice,
           totalPrice: result.checkout.totalPrice,
           price: result.product.price,
-          image: result.product.image
+          image: result.product.image,
+          cupons: result.checkout.availableCoupons,
+        }
+        console.log('this',this.voucher_id)
+        if(this.voucher_id != -1){
+          fields = {
+            ...fields,
+            hasVoucher: true,
+            voucher_id: this.voucher_id
+          }
         }
 
-        new PrintHtmlPage('amount-total', fields.totalPrice, { accent: true, bold: true }).show();
-        new PrintHtmlPage('amount-shipping', fields.shippingPrice).show();
-        new PrintHtmlPage('amount-original', fields.price).show();
-        console.log(fields);
+        const summarySection  = new SummarySection(fields)
+        const cupomSection = new CupomSection(fields.cupons)
+        summarySection.printAll();
+        
+        cupomSection.printAvailables();
+        cupomSection.bindChanges();
       })
   }
+
 }
 
 $(document).ready(() =>{
