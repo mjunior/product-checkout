@@ -55,13 +55,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     _createClass(EnjoeiModal, [{
       key: "fire",
       value: function fire() {
+        var width = "".concat(document.querySelector('.container').offsetWidth, "px");
+        console.log('wi', width);
         Swal.fire({
           title: this.title || 'compra efetuada',
           text: this.text || 'enviaremos informacoes por email',
           showCloseButton: false,
           showCancelButton: false,
           showConfirmButton: false,
-          width: '370px',
+          imageUrl: 'https://unsplash.it/40/40',
+          imageWidth: 40,
+          imageHeight: 40,
+          imageAlt: 'Custom image',
+          width: '280px',
           customClass: {
             container: 'enjoei-modal-container-class',
             popup: 'enjoei-modal-popup-class',
@@ -100,7 +106,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       key: "confirm",
       value: function confirm() {
         var title = 'compra confirmada';
-        var text = 'entraremos em contato po email';
+        var text = 'enviaremos atualizações sobre o pedido para o seu email';
         var modal = new EnjoeiModal(title, text);
         modal.fire();
       }
@@ -108,7 +114,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       key: "cancel",
       value: function cancel() {
         var title = 'compra cancelada';
-        var text = 'pedido não foi enviado, você não sera cobrado';
+        var text = 'pedido não foi enviado e você não sera cobrado';
         var modal = new EnjoeiModal(title, text);
         modal.fire();
       }

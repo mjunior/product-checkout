@@ -16,13 +16,19 @@
     }
     
     fire(){
+      let width = `${document.querySelector('.container').offsetWidth}px`
+      console.log('wi',width);
       Swal.fire({
         title: this.title || 'compra efetuada',
         text: this.text || 'enviaremos informacoes por email',
         showCloseButton: false,
         showCancelButton: false,
         showConfirmButton: false,
-        width: '370px',
+        imageUrl: 'https://unsplash.it/40/40',
+        imageWidth: 40,
+        imageHeight: 40,
+        imageAlt: 'Custom image',
+        width: '280px',
         customClass: {
           container: 'enjoei-modal-container-class',
           popup: 'enjoei-modal-popup-class',
@@ -50,14 +56,14 @@
 
     confirm() {
       const title = 'compra confirmada';
-      const text = 'entraremos em contato po email';
+      const text = 'enviaremos atualizações sobre o pedido para o seu email';
       const modal = new EnjoeiModal(title, text)
       modal.fire()
     }
 
     cancel() {
       const title = 'compra cancelada';
-      const text = 'pedido não foi enviado, você não sera cobrado'
+      const text = 'pedido não foi enviado e você não sera cobrado'
       const modal = new EnjoeiModal(title,text)
       modal.fire()
     }
