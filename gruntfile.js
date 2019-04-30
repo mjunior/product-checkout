@@ -28,7 +28,7 @@ module.exports = function (grunt) {
     },
     babel: {
       options: {
-        sourceMap: true,
+        sourceMap: false,
         presets: ['@babel/preset-env']
       },
       dist: {
@@ -71,6 +71,7 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
+            sourceMap: false,
             cwd: 'public/css/',
             src: ['*.css', '!*.min.css'],
             dest: 'public/css',

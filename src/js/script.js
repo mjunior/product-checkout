@@ -17,8 +17,8 @@
     }
     
     fire(){
-      let width = `${document.querySelector('.container').offsetWidth}px`
-      console.log('wi',width);
+      let width = `${document.querySelector('.container').offsetWidth - 80}px`
+
       Swal.fire({
         title: this.title || 'compra efetuada',
         text: this.text || 'enviaremos informacoes por email',
@@ -27,7 +27,7 @@
         showConfirmButton: false,
         imageUrl: `/public/images/cart-${this.modal_icon}.png`,
         imageHeight: 25,
-        width: '295px',
+        width: width,
         customClass: {
           container: 'enjoei-modal-container-class',
           popup: 'enjoei-modal-popup-class',
@@ -196,6 +196,18 @@
     }
   }
 
+  //Picture
+  class PictureSection{
+    constructor(url){
+      this.url = url
+      this.imageEl = document.getElementById('image');
+    }
+
+    show(){
+      this.imageEl.src = this.url
+    }
+  }
+
   //Load checkout page
   class LoadCheckoutPage{
     constructor(checkout_id, voucher_id = -1){
@@ -219,6 +231,9 @@
           const cupomSection = new CupomSection(result.checkout.availableCoupons)
           cupomSection.printAvailables();
           cupomSection.bindChanges();
+
+          const pictureSection = new PictureSection(result.product.image)
+          pictureSection.show();
         })
     }
   }

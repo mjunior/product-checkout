@@ -56,8 +56,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     _createClass(EnjoeiModal, [{
       key: "fire",
       value: function fire() {
-        var width = "".concat(document.querySelector('.container').offsetWidth, "px");
-        console.log('wi', width);
+        var width = "".concat(document.querySelector('.container').offsetWidth - 80, "px");
         Swal.fire({
           title: this.title || 'compra efetuada',
           text: this.text || 'enviaremos informacoes por email',
@@ -66,7 +65,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           showConfirmButton: false,
           imageUrl: "/public/images/cart-".concat(this.modal_icon, ".png"),
           imageHeight: 25,
-          width: '295px',
+          width: width,
           customClass: {
             container: 'enjoei-modal-container-class',
             popup: 'enjoei-modal-popup-class',
@@ -295,6 +294,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }]);
 
     return CupomSection;
+  }(); //Picture
+
+
+  var PictureSection =
+  /*#__PURE__*/
+  function () {
+    function PictureSection(url) {
+      _classCallCheck(this, PictureSection);
+
+      this.url = url;
+      this.imageEl = document.getElementById('image');
+    }
+
+    _createClass(PictureSection, [{
+      key: "show",
+      value: function show() {
+        this.imageEl.src = this.url;
+      }
+    }]);
+
+    return PictureSection;
   }(); //Load checkout page
 
 
@@ -331,6 +351,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var cupomSection = new CupomSection(result.checkout.availableCoupons);
           cupomSection.printAvailables();
           cupomSection.bindChanges();
+          var pictureSection = new PictureSection(result.product.image);
+          pictureSection.show();
         });
       }
     }]);
@@ -343,4 +365,3 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     new ActionButtons();
   });
 })();
-//# sourceMappingURL=script.js.map
