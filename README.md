@@ -1,4 +1,16 @@
-### Instructions
+### Iniciando aplicação
+
+Execude no terminal `node server.js`
+
+Acesse `http://localhost:3000`
+
+### Layout desenvolvido
+![](layout.gif)
+
+### TODO
+* Separar arquivos JS e usar grunt concat
+
+### Challenge
 
 1. Create a new Git repository with `git init`.
 
