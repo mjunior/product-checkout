@@ -104,10 +104,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     _createClass(ActionButtons, [{
       key: "confirm",
       value: function confirm() {
-        var title = 'compra confirmada';
-        var text = 'enviaremos atualizações sobre o pedido para o seu email';
-        var modal = new EnjoeiModal(title, text, 'success');
-        modal.fire();
+        var checkout_id = PathParam.params().checkout;
+        var url = "/api/checkouts/".concat(checkout_id);
+        fetch(url, {
+          method: 'POST'
+        }).then(function (result) {
+          return result.json();
+        }).then(function (result) {
+          if (result.status === 'success') {
+            var title = 'compra confirmada';
+            var text = 'enviaremos atualizações sobre o pedido para o seu email';
+            var modal = new EnjoeiModal(title, text, 'success');
+            modal.fire();
+          }
+        });
       }
     }, {
       key: "cancel",

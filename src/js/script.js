@@ -54,10 +54,18 @@
     }
 
     confirm() {
-      const title = 'compra confirmada';
-      const text = 'enviaremos atualizações sobre o pedido para o seu email';
-      const modal = new EnjoeiModal(title, text, 'success')
-      modal.fire()
+      const checkout_id = PathParam.params().checkout
+      let url = `/api/checkouts/${checkout_id}`
+      fetch(url, { method: 'POST' })
+        .then((result) => result.json())
+        .then((result) => {
+          if(result.status === 'success'){
+            const title = 'compra confirmada';
+            const text = 'enviaremos atualizações sobre o pedido para o seu email';
+            const modal = new EnjoeiModal(title, text, 'success')
+            modal.fire()
+          }
+        })
     }
 
     cancel() {
