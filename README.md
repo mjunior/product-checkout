@@ -1,6 +1,6 @@
 ### Iniciando aplicação
 
-Execude no terminal `node server.js`
+Execute no terminal `node server.js`
 
 Acesse `http://localhost:3000`
 
